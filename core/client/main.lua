@@ -1,0 +1,23 @@
+RegisterCommand('evchars', function()
+ EV.Callback.Trigger('characters:list', function(ok, rows)
+  if not ok then return EV.ClientUtils.Notify('Impossible de charger les personnages', 'error') end
+  SendNUIMessage({action = 'characters', characters = rows})
+  SetNuiFocus(true, true)
+ end)
+end, false)
+RegisterNUICallback('close', function(_, cb) SetNuiFocus(false, false); cb({ok = true}) end)
+RegisterNUICallback('select', function(data, cb)
+ EV.Callback.Trigger('characters:select', function(ok, selected)
+  if ok and selected then SetNuiFocus(false, false) end
+  cb({ok = ok and selected == true})
+ end, tonumber(data.id))
+end)
+RegisterNUICallback('create', function(data, cb)
+ EV.Callback.Trigger('characters:create', function(ok, id)
+  cb({ok = ok and id ~= nil, id = id})
+  if ok and id then ExecuteCommand('evchars') end
+ end, data.firstname, data.lastname)
+end)
+CreateThread(function() Wait(1500); ExecuteCommand('evchars') end)
+exports('GetPlayerData', function() return EV.Player end)
+exports('Notify', function(message, kind) EV.ClientUtils.Notify(message, kind) end)
