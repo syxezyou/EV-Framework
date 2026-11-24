@@ -17,7 +17,7 @@
 
 EV est un projet de framework RP autonome pour FiveM, organisé autour d'un noyau Lua, de modules internes, de données SQL et d'une interface NUI. Il vise une architecture lisible et extensible.
 
-**État actuel :** archive 0.1.6 expérimentale, runtime déclaré 0.1.5. Cette publication de documentation précède l'importation des fichiers sources. Ne pas utiliser en production sans validation.
+**État actuel :** archive 0.1.6 expérimentale, runtime déclaré 0.1.5. Les fichiers sources sont disponibles dans ce dépôt. Ne pas utiliser en production sans validation.
 
 ## Fonctionnalités de l'archive
 
@@ -37,9 +37,9 @@ EV est un projet de framework RP autonome pour FiveM, organisé autour d'un noya
 - oxmysql installé et configuré.
 - Une base de test dédiée avant tout déploiement.
 
-## Installation (après importation des sources)
+## Installation
 
-1. Placer le dossier `ev` dans les ressources FiveM.
+1. Télécharger ou cloner ce dépôt, renommer le dossier `EV-Framework` en `ev` et le placer dans les ressources FiveM. Le fichier `fxmanifest.lua` doit se trouver directement dans `ev/`.
 2. Créer une base de données dédiée et importer `ev/sql/install.sql`.
 3. Configurer la connexion oxmysql dans `server.cfg`, sans partager les identifiants.
 4. Charger les ressources dans cet ordre :
